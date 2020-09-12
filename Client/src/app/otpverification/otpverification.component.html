@@ -1,0 +1,60 @@
+<div class="main-content-container container-fluid px-4">
+    <div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <h3 class="page-title">OTP validation</h3>
+        </div>
+    </div>
+
+    <div class="card card-small mb-4">
+        <div class="card-header border-bottom bg-primary">
+            <h6 class="m-0">Enter OTP</h6>
+        </div>
+        <div class="card-body ">
+            <form class="form-horizontal" #userdata="ngForm" method=" post ">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label>please enter OTP send to your mobile <span class="star">*</span> :</label>
+                            <div class="col-md-12">
+                                <input type="number" class="form-control" name="otp" [(ngModel)]="otp" placeholder="Enter OTP" ng-pattern="/^[1-9][0-9]{9}$/" allow-numbers-only required>
+                                <span style="color:red" ng-show="valid1.otp.$dirty && valid1.otp.$invalid">
+                                                <span ng-show="valid1.otp.$error.required">OTP is
+                                                    Required .</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+            </form>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-md btn-success float-right" data-toggle="modal" data-target="#showqrcode" data-backdrop="static" data-keyboard="false" (click)="onadd();">Confirm</button>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- modal start for delete section -->
+<div class="modal fade" id="showqrcode" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader">
+                <h5 class="modal-title" id="ModalLabel ">Delete Kit Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <!-- {{result.qrcode}} -->
+                <img src="{{ qrcode }}" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button " class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-success" (click)="redirect();">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>

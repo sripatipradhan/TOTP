@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+
+.card-header h6 {
+    color: white;
+    font-size: 18px;
+}
+
+.asterisk-mark {
+    color: red;
+    font-weight: bold;
+}
+
+.main-content {
+    min-height: 500px !important;
+}
+
+.main-content-container {
+    min-height: 700px;
+}
+
+.no-record-found {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.modal .modal-header h5 {
+    color: white !important;
+}
+
+.modal .modal-header .close {
+    color: black !important;
+}
+
+.color {
+    color: red;
+}
+
+.form-control {
+    border-color: lightgrey !important;
+    background-color: white !important;
+}
+
+
+/* .form-group label {
+  color: black; 
+   font-weight: bold;
+} */
+
+.search-header {
+    height: 57px;
+}
+
+.search-header .input-group {
+    margin-top: -6px;
+}

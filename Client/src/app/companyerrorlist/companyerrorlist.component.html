@@ -1,0 +1,172 @@
+<div class="main-content-container container-fluid px-4">
+    <div class="page-header row no-gutters py-4">
+        <div class="col-12 text-center mb-0">
+            <h3 class="page-title">Error Log List</h3>
+            <h3 class="text-danger">{{message}}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card card-small mb-4">
+                <div class="card-header border-bottom bg-primary search-header">
+                    <div class="row">
+                        <div class="col-3">
+                            <h6 class="m-0">Error list</h6>
+                        </div>
+                        <div class="col-2">
+                        </div>
+                        <div class="col-1">
+                            <button type="submit" class="btn btn-danger" (click)="clear();" *ngIf="cl"><i class="fas fa-filter"></i></button>
+                        </div>
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <input class="form-control" type="date" [(ngModel)]="dateStart" placeholder="" required>
+                                <div class="col-1">
+                                    <h6><b>- </b></h6>
+                                </div>
+                                <input class="form-control" type="date" [(ngModel)]="dateEnd" placeholder="" required>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-warning" (click)="search();"><i class="fas fa-search"></i> By date</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="input-group mb-3">
+                                <select name="" class="form-control" id="" [(ngModel)]="searchStatus">
+                                    <option value="">--status--</option>
+                                    <option value="success">Success</option>
+                                    <option value="failed">Failed</option>
+                                </select>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-warning" (click)="search();"><i class="fas fa-search"></i> By Status</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body p-0 pb-3 text-center">
+                    <table class="table mb-0 table-responsive-sm table-bordered table-striped">
+                        <thead class="bg-light">
+                            <tr class="border-1">
+                                <th>SL.</th>
+                                <th>Project code</th>
+                                <th>Time stamp</th>
+                                <th>Action</th>
+                                <th>Status</th>
+                                <th>URL</th>
+                                <th>IP</th>
+                                <th>OS</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- | filter : 'name' : searchString; -->
+                            <tr *ngFor="let x of errorlist | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ x.projectcode }}</td>
+                                <td>{{ x.datetime }}</td>
+                                <td>{{ x.action }}</td>
+                                <td>{{ x.status }}{{message}}</td>
+                                <td>{{ x.url }}</td>
+                                <td>{{ x.ip }}</td>
+                                <td>{{ x.os }}</td>
+                                <td>
+                                    <button class="btn btn-outline-primary" type="submit" data-toggle="modal" data-target="#viewAuditListModal" data-backdrop="static" data-keyboard="false" (click)="viewAuditDetail(x);"> <i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <pagination-controls class="my-pagination text-center" (pageChange)="p = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="viewAuditListModal" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document1">
+        <div class="modal-content">
+            <div class="modal-header editheader bg-primary">
+                <h5 class="modal-title" id="ModalLabel ">View audit log details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal ">
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Project code :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.projectcode}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Api key :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.apikey}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Query :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.query}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Params :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.params}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Body :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.body}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Date & time :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.datetime}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">User id :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.userId}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">User type :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.usertype}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Action :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.action}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Status :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.status}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Referred url :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.refUrl}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Url :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.url}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">IP :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.ip}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Browser :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.browser.name}}, {{viewDetail.browser.type}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Device type :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.devicetype}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">OS :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.os}}</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

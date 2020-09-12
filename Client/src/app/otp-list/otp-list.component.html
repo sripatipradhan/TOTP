@@ -1,0 +1,113 @@
+<div class="main-content-container container-fluid px-4">
+    <div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <!-- <span class="text-uppercase page-subtitle">Overview</span> -->
+            <h3 class="page-title">All User list</h3>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card card-small mb-4">
+                <div class="card-header border-bottom bg-primary search-header">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="m-0">User list</h6>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <div class="input-group mb-3">
+                                <input class="form-control " type="text" [(ngModel)]="searchString" placeholder="Enter the mobile number" required>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-warning" (click)="search();"><i class="fas fa-search"></i> Search</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0 pb-3 text-center">
+                    <table class="table mb-0 table-responsive-sm table-bordered table-striped">
+                        <thead class="bg-light">
+                            <tr class="border-1">
+                                <th>SL.</th>
+                                <th>Mobile no.</th>
+                                <th>Creation date&time</th>
+                                <th>Secret key</th>
+                                <th>Status</th>
+                                <th>Qrcode</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- | filter : 'name' : searchString; -->
+                            <tr *ngFor="let x of otplistdata; index as i">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ x.mobile }}</td>
+                                <td>{{ x.datetime }}</td>
+                                <td>{{ x.secretcode }}</td>
+                                <td>
+                                    <button class="btn btn-outline-success" type="submit" (click)="active(x);" *ngIf="!x.block"> <i class="fas fa-unlock" aria-hidden="true"></i></button>
+                                    <button class="btn btn-outline-info" type="submit" (click)="active(x);" *ngIf="x.block"> <i class="fas fa-lock" aria-hidden="true"></i></button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-dark" type="submit" data-toggle="modal" data-target="#userQrcodeModal" data-backdrop="static" data-keyboard="false" (click)="viewQrcode(x);"> <i class="fas fa-qrcode"></i></button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-outline-danger" type="submit" data-toggle="modal" data-target="#deleteuserdetailsModal" data-backdrop="static" data-keyboard="false" (click)="viewDeleteDetail(x);"> <i class="fas fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- MODAL FOR DELETE START FROM HERE -->
+
+<div class="modal fade" id="deleteuserdetailsModal" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader bg-danger">
+                <h5 class="modal-title" id="ModalLabel ">Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5>Are you sure you want to delete this data ?</h5>
+            </div>
+            <div class="modal-footer ">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="delete(viewDelete.mobile);">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL FOR QRCODE DISPLAY START HERE -->
+
+<div class="modal fade" id="userQrcodeModal" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document1">
+        <div class="modal-content">
+            <div class="modal-header deleteheader">
+                <h5 class="modal-title" id="ModalLabel ">Delete Kit Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <img src="{{ qrcode }}" alt="">
+            </div>
+            <div class="modal-footer">
+                <button type="button " class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-success">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>

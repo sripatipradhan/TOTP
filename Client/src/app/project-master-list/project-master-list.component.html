@@ -1,0 +1,288 @@
+<div class="main-content-container container-fluid px-4">
+    <div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <!-- <span class="text-uppercase page-subtitle">Overview</span> -->
+            <h3 class="page-title">All on-boarded project list</h3>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card card-small mb-4">
+                <div class="card-header border-bottom bg-primary search-header">
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="m-0">project list</h6>
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <!-- <div class="input-group mb-3">
+                                <input class="form-control " type="text" [(ngModel)]="searchString" placeholder="Enter the mobile number" required>
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-warning" (click)="search();"><i class="fas fa-search"></i> Search</button>
+                                </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-0 pb-3 text-center">
+                <table class="table mb-0 table-responsive-sm table-bordered table-striped">
+                    <thead class="bg-light">
+                        <tr class="border-1">
+                            <th>SL.</th>
+                            <th>project code</th>
+                            <!-- <th>Protocol.</th> -->
+                            <!-- <th>Url</th> -->
+                            <th>IP address</th>
+                            <!-- <th>Failover IP</th> -->
+                            <th>project name</th>
+                            <th>Creation date&time</th>
+                            <th>Created by</th>
+                            <th>API key</th>
+                            <th>Edit</th>
+                            <th>ChangeApi</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <!-- | filter : 'name' : searchString; -->
+                        <tr *ngFor="let x of projectlist; index as i">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ x.projectcode }}</td>
+                            <!-- <td>{{ x.protocol }}</td> -->
+                            <!-- <td>{{ x.url }}</td> -->
+                            <td>{{ x.IP }}</td>
+                            <!-- <td>{{ x.FailoverIP }}</td> -->
+                            <td>{{ x.projectname }}</td>
+                            <td>{{ x.datetime }}</td>
+                            <td>{{ x.createdBy }}</td>
+                            <td>{{ x.apikey }}</td>
+                            <td>
+                                <button class="btn btn-outline-primary" type="submit" data-toggle="modal" data-target="#editProjectListModal" data-backdrop="static" data-keyboard="false" (click)="viewprojectdeatils(x);"> <i class="fas fa-edit"></i></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" data-target="#apiPopUpModal" data-backdrop="static" data-keyboard="false" (click)="changeApi(x);"> <i class="fas fa-random"></i></button>
+                            </td>
+                            <td>
+                                <button class="btn btn-outline-danger" type="submit" data-toggle="modal" data-target="#deleteprojectdetailsModal" data-backdrop="static" data-keyboard="false" (click)="viewprojectdeatils(x);"> <i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid">
+    <div class="col-md-12 searchbar">
+        <div class="col-md-4 tsearchbar">
+
+        </div>
+        <div class="col-md-3 dsearchbar">
+            <div class="input-group">
+                <span class="input-group-prepend">
+                <button class="btn btn-primary" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"width="20" height="20"viewBox="0 0 172 172"
+                        style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#ffffff"><path d="M64.5,14.33333c-27.6214,0 -50.16667,22.54527 -50.16667,50.16667c0,27.6214 22.54527,50.16667 50.16667,50.16667c12.52732,0 23.97256,-4.67249 32.7819,-12.31771l3.05143,3.05143v9.26628l40.03256,40.03256c3.95599,3.95599 10.37733,3.956 14.33333,0c3.956,-3.956 3.956,-10.37733 0,-14.33333l-40.03256,-40.03256h-9.26628l-3.05143,-3.05143c7.64521,-8.80934 12.31771,-20.25458 12.31771,-32.7819c0,-27.6214 -22.54527,-50.16667 -50.16667,-50.16667zM64.5,28.66667c19.87509,0 35.83333,15.95824 35.83333,35.83333c0,19.87509 -15.95825,35.83333 -35.83333,35.83333c-19.87509,0 -35.83333,-15.95825 -35.83333,-35.83333c0,-19.87509 15.95824,-35.83333 35.83333,-35.83333z"></path></g></g>
+                    </svg> Search     
+                </button>
+             </span>
+                <input class="form-control col-md-8" type="text" [(ngModel)]="searchString" placeholder="Enter the employee name" required>
+              
+            </div>
+        </div>
+    </div>
+    <br> <br>
+
+    <div class="card">
+        <div class="card-header text-center">
+            <strong> DELIVERY STAFF LIST</strong>
+        </div>
+        <div class="card-body">
+            <table class="table table-responsive-md table-bordered table-striped table-sm">
+                <thead class="text-center">
+                    <tr>
+                        <th>SLNO</th>
+                        <th>EMPID</th>
+                        <th>NAME</th>
+                        <th>EMAIL</th>
+                        <th>FATHER NAME</th>
+                        <th>DOB</th>
+                        <th>LICENSENO.</th>
+                        <th>MOBILENO.</th>
+                        <th>GENDER</th>
+                        <th>ADDRESS</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    <tr *ngFor="let x of deliverystaffdata  index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ x.empId }}</td>
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.email }}</td>
+                        <td>{{ x.fathername }}</td>
+                        <td>{{ x.dob }}</td>
+                        <td>{{ x.licenseno }}</td>
+                        <td>{{ x.mobileno }}</td>
+                        <td>{{ x.gender }}</td>
+                        <td>{{ x.address.street }},{{ x.address.city }}-{{ x.address.postalcode }},{{ x.address.country }}</td>
+                        <td>
+                            <button class="btn btn-sm btn-info" type="submit" data-toggle="modal" data-target="#editdeliverystaffdetailsModal" data-backdrop="static" data-keyboard="false" (click)="viewEditDetail(x);"> Edit</button>
+                        </td>
+                        <td>
+                            <button class="btn btn-sm btn-danger" type="submit" data-toggle="modal" data-target="#deletedeliverystaffdetailsModal" data-backdrop="static" data-keyboard="false" (click)="viewDeleteDetail(x);"> Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <nav class="float-right ">
+                <ul class="pagination ">
+                    <li class="page-item "><a class="page-link " href="# ">Prev</a></li>
+                    <li class="page-item active "><a class="page-link " href="# ">1</a></li>
+                    <li class="page-item "><a class="page-link " href="# ">2</a></li>
+                    <li class="page-item "><a class="page-link " href="# ">3</a></li>
+                    <li class="page-item "><a class="page-link " href="# ">4</a></li>
+                    <li class="page-item "><a class="page-link " href="# ">Next</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div> -->
+
+<!-- | filter : 'name' : searchString; -->
+<!-- modal start for edit section -->
+
+<div class="modal fade" id="editProjectListModal" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document1">
+        <div class="modal-content">
+            <div class="modal-header editheader bg-primary">
+                <h5 class="modal-title" id="ModalLabel ">Edit Delivery Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal ">
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">Project code :</label>
+                        <label class="col-md-7 col-form-label " for=" ">{{viewDetail.projectcode}}</label>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">protocol :</label>
+                        <select class="form-control col-md-7" name="protocol" [(ngModel)]="data.protocol" required>
+                        <option disabled>--select--</option>
+                        <option value="http">HTTP</option>
+                        <option value="https">HTTPS</option>
+                      </select>
+                    </div>
+                    <div class="form-group row ">
+                        <label for="postalcode" class="col-md-5 col-form-label">URL :</label>
+                        <input class="form-control col-md-7" id="" type="url" name="url" [(ngModel)]="data.url" value="{{viewDetail.url}}" placeholder=" Enter URL here. " required>
+
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label " for=" ">Internet protocol(IP) : </label>
+                        <input class="form-control col-md-7" id=" " type="text" name="IP" [(ngModel)]="data.IP" placeholder=" Enter IP address.. " value="{{viewDetail.IP}}" required>
+
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label " for=" ">Failover IP : </label>
+                        <input class="form-control col-md-7" id=" " type="text" name="FailoverIP" [(ngModel)]="data.FailoverIP" placeholder=" Enter backup IP address.. " value="{{viewDetail.FailoverIP}}" required>
+
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label " for=" ">Project name : </label>
+                        <input class="form-control col-md-7" id=" " type="text" name="projectname" [(ngModel)]="data.projectname" placeholder=" Enter project name.. " value="{{viewDetail.projectname}}">
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">co-ordinator name : </label>
+                        <input class="form-control col-md-7" id=" " type="text" name="pcname" [(ngModel)]="data.pcname" placeholder=" Enter project co-ordinator name.. " value="{{viewDetail.pcname}}" required>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">co-ordinator email : </label>
+                        <input class="form-control col-md-7" id=" " type="text" name="pcemail" [(ngModel)]="data.pcemail" placeholder=" Enter project co-ordinator email.. " value="{{viewDetail.pcemail}}" required>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" ">co-ordinator mobile : </label>
+                        <input class="form-control col-md-7" id=" " type="text" name="pcmobile1" [(ngModel)]="data.pcmobile1" placeholder=" Enter project co-ordinator mobile.. " value="{{viewDetail.pcmobile1}}" required>
+                    </div>
+                    <div class="form-group row ">
+                        <label class="col-md-5 col-form-label" for=" "> altranative mobile : </label>
+                        <input class="form-control col-md-7" id=" " type="text" name="pcmobile2" [(ngModel)]="data.pcmobile2" placeholder=" Enter project co-ordinator mobile.. " value="{{viewDetail.pcmobile2}}" required>
+                    </div>
+                    <div class=" form-group row ">
+                        <label class="col-md-5 col-form-label " for=" ">Description : </label>
+                        <textarea name="description " class="form-control col-md-7" placeholder="write something about your project.. " value="{{viewDetail.description}} " id=" " [(ngModel)]="data.description " cols=" " rows="3 "></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-primary " data-dismiss="modal" (click)="editdata(); ">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL FOR DELETE START FROM HERE -->
+
+<div class="modal fade " id="deleteprojectdetailsModal" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true ">
+    <div class="modal-dialog " role="document1 ">
+        <div class="modal-content ">
+            <div class="modal-header deleteheader bg-danger ">
+                <h5 class="modal-title " id="ModalLabel ">Confirmation</h5>
+                <button type="button " class="close " data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true ">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <h5>Are you sure you want to delete this data ?</h5>
+            </div>
+            <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-danger " data-dismiss="modal" (click)="delete();">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL FOR API POPUP START FROM HERE -->
+
+<div class="modal fade " id="apiPopUpModal" tabindex="1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true ">
+    <div class="modal-dialog " role="document1 ">
+        <div class="modal-content ">
+            <div class="modal-header deleteheader bg-warning">
+                <h5 class="modal-title " id="ModalLabel ">New Api Key</h5>
+                <button type="button " class="close" data-dismiss="modal" aria-label="Close ">
+                    <span aria-hidden="true ">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <P class="text-primary">NOTE THE API KEY BELOW FOR FUTHER USE</P>
+                <h3><b>{{key}}</b></h3>
+            </div>
+            <!-- <div class="modal-footer ">
+                <button type="button " class="btn btn-secondary " data-dismiss="modal">Close</button>
+                <button type="button " class="btn btn-danger " data-dismiss="modal" (click)="delete();">Delete</button>
+            </div> -->
+        </div>
+    </div>
+</div>

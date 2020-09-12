@@ -1,0 +1,95 @@
+<div class="main-content-container container-fluid px-4">
+    <div class="page-header row no-gutters py-4">
+        <div class="col-12 col-sm-4 text-center text-sm-left mb-0">
+            <h3 class="page-title">New project on boarding</h3>
+        </div>
+    </div>
+
+    <div class="card card-small mb-4">
+        <div class="card-header border-bottom bg-primary">
+            <h6 class="m-0">Add project</h6>
+        </div>
+        <div class="card-body ">
+            <form class="form-horizontal" #userdata="ngForm" method=" post ">
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Protocol : </label>
+                    <div class="col-md-9">
+                        <select class="form-control " name="protocol" [(ngModel)]="protocol" required>
+                            <option disabled>--select--</option>
+                            <option value="http">HTTP</option>
+                            <option value="https">HTTPS</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-right" for=" ">URL : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="url" name="IP" [(ngModel)]="url" placeholder=" Enter URL here. " required>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Internet protocol(IP) : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="text" name="IP" [(ngModel)]="IP" placeholder=" Enter IP address.. " required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Failover IP : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="text" name="FailoverIP" [(ngModel)]="FailoverIP" placeholder=" Enter backup IP address.. " required>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Project name : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="text" name="projectname" [(ngModel)]="projectname" placeholder=" Enter project name.. " required>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Project co-ordinator name : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="text" name="pcname" [(ngModel)]="pcname" placeholder=" Enter project co-ordinator name.. " required>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Project co-ordinator email : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="text" name="pcemail" [(ngModel)]="pcemail" placeholder=" Enter project co-ordinator email.. " required>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Project co-ordinator mobile : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="text" name="pcmobile1" [(ngModel)]="pcmobile1" placeholder=" Enter project co-ordinator mobile.. " required>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Project co-ordinator altranative mobile : </label>
+                    <div class="col-md-9">
+                        <input class="form-control " id=" " type="text" name="pcmobile2" [(ngModel)]="pcmobile2" placeholder=" Enter project co-ordinator mobile.. " required>
+                    </div>
+                </div>
+
+                <div class="form-group row ">
+                    <label class="col-md-3 col-form-label text-right" for=" ">Description : </label>
+                    <div class="col-md-9">
+                        <textarea name="description" class="form-control" placeholder="write something about your project.." id="" [(ngModel)]="description" cols="127" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row ">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-9 text-left">
+                        <label class="" for="">
+                         <input class="mr-2" type="checkbox" name="inspection" [(ngModel)]="inspection"> Inspection mode</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer ">
+            <button class="btn btn-primary btn-md float-right " (click)="onadd();"> ADD</button>
+            <br>
+            <br>
+        </div>
+    </div>
+
+</div>
