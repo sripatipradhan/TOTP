@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOTP valid</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        label {
+            font-size: large;
+            font-weight: 600;
+        }
+        
+        #submit {
+            text-align: center;
+            float: right;
+        }
+        
+        body {
+            margin-left: 400px;
+            margin-top: 100px;
+            background-color: rgba(26, 123, 202, 0.4);
+        }
+        
+        .col-lg-7 {
+            border: solid 1px black;
+            padding: 70px 40px;
+            background-color: rgba(245, 245, 245, 0.6);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <h2 class="text-center">OTP validation :</h2>
+                <br>
+                <form action="http://localhost:3000/totp/totp-secret" method="GET">
+
+                    <div class="form-group">
+                        <label for="OTP">Please enter OTP sent to your mobile :</label>
+                        <input type="number" name="otp" class="form-control" required>
+                        <input type="hidden" name="mobile" value="<%=mobile%>" placeholder="<%=mobile%>" class="form-control">
+                    </div>
+                    <br>
+                    <input type="submit" id="submit" class="btn btn-success btn-lg">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
