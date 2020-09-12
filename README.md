@@ -1,2 +1,2 @@
-# TOTP Project
+# TOTP
 Totp, audit log centralized project
